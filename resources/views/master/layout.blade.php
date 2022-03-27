@@ -7,6 +7,6 @@
     <title>@yield('title')</title>
 </head>
 <body>
-    <h1>Hello</h1>
+    <h1>Im Master Layout</h1>
 </body>
 </html>
