@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -9,26 +10,21 @@ class HomeController extends Controller
     //
     public function index($name = null)
     {
-        $posts = [
-            [
-                'id' => 1,
-                'title' => 'post title 1',
-                'body' => 'post body 1'
-            ],
-            [
-                'id' => 2,
-                'title' => 'post title 2',
-                'body' => 'post body 2'
-            ],
-            [
-                'id' => 3,
-                'title' => 'post title 3',
-                'body' => 'post body 3'
-            ]
-        ];
+        $posts = Post::paginate(5);
+        // $posts = Post::latest()->get();
+        // $posts = Post::orderBy("title", "ASC")->get();
+        // $posts = Post::where("title", "=", "Alice to.")->get();
 
         return view('home')->with([
             'posts' => $posts
+        ]);
+    }
+
+    public function show($id){
+        $post = Post::find($id);
+
+        return view('show')->with([
+            'post' => $post
         ]);
     }
 }
