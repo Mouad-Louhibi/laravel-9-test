@@ -9,11 +9,26 @@ class HomeController extends Controller
     //
     public function index($name = null)
     {
-        $hello = 'Hello from home page';
+        $posts = [
+            [
+                'id' => 1,
+                'title' => 'post title 1',
+                'body' => 'post body 1'
+            ],
+            [
+                'id' => 2,
+                'title' => 'post title 2',
+                'body' => 'post body 2'
+            ],
+            [
+                'id' => 3,
+                'title' => 'post title 3',
+                'body' => 'post body 3'
+            ]
+        ];
 
         return view('home')->with([
-            'hello' => $hello,
-            'name' => $name
+            'posts' => $posts
         ]);
     }
 }
