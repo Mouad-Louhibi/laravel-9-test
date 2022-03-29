@@ -20,8 +20,8 @@ class HomeController extends Controller
         ]);
     }
 
-    public function show($id){
-        $post = Post::find($id);
+    public function show($slug){
+        $post = Post::where('slug', $slug)->first();
 
         return view('show')->with([
             'post' => $post
