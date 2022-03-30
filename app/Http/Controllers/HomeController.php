@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Requests\PostRequest;
 
 class HomeController extends Controller
 {
@@ -35,16 +35,14 @@ class HomeController extends Controller
         return view('create');
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         // dd($request->all());
 
-        $this->validate($request, [
-            'title' => 'required | min:3 | max:100',
-            'body' => 'required | min:10 | max:1000',
-            // 'image' => 'required | min:3 | max:100',
-            // 'slug' => 'required | min:3 | max:100',
-        ]);
+        // $this->validate($request, [
+        //     'title' => 'required | min:3 | max:100',
+        //     'body' => 'required | min:10 | max:1000'
+        // ]);
 
         Post::create([
             'title' => $request->title,

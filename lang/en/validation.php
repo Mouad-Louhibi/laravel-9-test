@@ -142,8 +142,16 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'title' => [
+            'required' => 'Le champ titre est obligatoire',
+            'min' => 'Le champ titre doit avoir au moins :min caractéres',
+            'max' => 'Le champ titre ne doit pas dépasser :max caractéres',
+        ],
+        'body' => [
+            'required' => 'Le champ description est obligatoire',
+            'min' => 'Le champ description doit avoir au moins :min caractéres',
+            'max' => 'Le champ description ne doit pas dépasser :max caractéres',
+
         ],
     ],
 
