@@ -23,7 +23,7 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('post.update', $post->slug) }}" method="POST">
+                    <form action="{{ route('post.update', $post->slug) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">

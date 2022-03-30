@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\File;
 
 class HomeController extends Controller
 {
@@ -44,11 +45,17 @@ class HomeController extends Controller
         //     'body' => 'required | min:10 | max:1000'
         // ]);
 
+        if ($request->has('image')) {
+            $file = $request->image;
+            $image_name = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads'), $image_name);
+        }
+
         Post::create([
             'title' => $request->title,
             'slug' =>  Str::slug($request->title),
             'body' => $request->body,
-            'image' => "https://via.placeholder.com/640x480.png/003333?text=new post",
+            'image' => $image_name,
         ]);
 
         return redirect()->route('home')->with([
@@ -77,11 +84,20 @@ class HomeController extends Controller
     {
         $post = Post::where('slug', $slug)->first();
 
+        if ($request->has('image')) {
+            $file = $request->image;
+            $image_name = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads'), $image_name);
+            // unlink(public_path('uploads') . '/' . $post->image);
+            File::delete('uploads' . '/' . $post->image);
+            $post->image = $image_name;
+        }
+
         $post->update([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
-            'image' => "https://via.placeholder.com/640x480.png/003333?text=new post",
-            'body' => $request->body
+            'body' => $request->body,
+            'image' => $post->image
         ]);
 
         return redirect()->route('home')->with([
