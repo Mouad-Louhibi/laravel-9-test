@@ -11,7 +11,7 @@ class HomeController extends Controller
     //
     public function index($name = null)
     {
-        $posts = Post::latest()->paginate(5);
+        $posts = Post::latest()->paginate(6);
         // $posts = Post::latest()->get();
         // $posts = Post::orderBy("title", "ASC")->get();
         // $posts = Post::where("title", "=", "Alice to.")->get();
@@ -51,7 +51,9 @@ class HomeController extends Controller
             'image' => "https://via.placeholder.com/640x480.png/003333?text=new post",
         ]);
 
-        echo "Article Added Successfully";
+        return redirect()->route('home')->with([
+            'success' => 'Article added successfully'
+        ]);
 
         // $post = new Post();
 
@@ -60,5 +62,40 @@ class HomeController extends Controller
         // $post->body = $request->body;
         // $post->image = "https://via.placeholder.com/640x480.png/003333?text=new post";
         // $post->save();
+    }
+
+    public function edit($slug)
+    {
+        $post = Post::where('slug', $slug)->first();
+
+        return view('edit')->with([
+            'post' => $post
+        ]);
+    }
+
+    public function update(PostRequest $request, $slug)
+    {
+        $post = Post::where('slug', $slug)->first();
+
+        $post->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'image' => "https://via.placeholder.com/640x480.png/003333?text=new post",
+            'body' => $request->body
+        ]);
+
+        return redirect()->route('home')->with([
+            'success' => 'Article updated successfully'
+        ]);
+    }
+
+    public function delete($slug)
+    {
+        $post = Post::where('slug', $slug)->first();
+        $post->delete();
+
+        return redirect()->route('home')->with([
+            'success' => 'Article deleted successfully'
+        ]);
     }
 }
