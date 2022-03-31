@@ -151,7 +151,12 @@ return [
             'required' => 'Le champ description est obligatoire',
             'min' => 'Le champ description doit avoir au moins :min caractéres',
             'max' => 'Le champ description ne doit pas dépasser :max caractéres',
-
+        ],
+        'image' => [
+            'required' => 'Le champ image est obligatoire',
+            'image' => 'Le type de fichier n\'est pas valide',
+            'mimes' => 'Seuls les fichiers :values accé ptés',
+            'max' => 'La taille de fichier ne doit pas dépasser 2Mo',
         ],
     ],
 
