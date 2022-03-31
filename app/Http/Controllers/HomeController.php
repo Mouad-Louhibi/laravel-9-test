@@ -12,7 +12,7 @@ class HomeController extends Controller
     //
     public function index($name = null)
     {
-        $posts = Post::latest()->paginate(6);
+        $posts = Post::latest()->paginate(18);
         // $posts = Post::latest()->get();
         // $posts = Post::orderBy("title", "ASC")->get();
         // $posts = Post::where("title", "=", "Alice to.")->get();
@@ -108,6 +108,7 @@ class HomeController extends Controller
     public function delete($slug)
     {
         $post = Post::where('slug', $slug)->first();
+        File::delete('uploads' . '/' . $post->image);
         $post->delete();
 
         return redirect()->route('home')->with([
