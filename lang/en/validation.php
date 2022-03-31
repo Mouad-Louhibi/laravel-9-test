@@ -154,7 +154,7 @@ return [
         ],
         'image' => [
             'required' => 'Le champ image est obligatoire',
-            'image' => 'Le type de fichier n\'est pas valide',
+            'image' => 'Le type du fichier n\'est pas valide',
             'mimes' => 'Seuls les fichiers :values accé ptés',
             'max' => 'La taille de fichier ne doit pas dépasser 2Mo',
         ],
