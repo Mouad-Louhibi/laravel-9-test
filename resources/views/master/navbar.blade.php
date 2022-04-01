@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ url('/') }}">
-            <h2>NFTs</h2>
+            <img src="{{ asset('./uploads/logo.png') }}" alt="" width="50" height="50">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,12 +12,12 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Accueil</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('post.create') }}">Ajouter</a>
-                </li>
                 @if (auth()->check())
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('profile.show') }}">{{ auth()->user()->name }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('post.create') }}">Ajouter</a>
                     </li>
                 @else
                     <li class="nav-item">
