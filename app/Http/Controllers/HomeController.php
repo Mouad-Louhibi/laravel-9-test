@@ -98,7 +98,8 @@ class HomeController extends Controller
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'body' => $request->body,
-            'image' => $post->image
+            'image' => $post->image,
+            'user_id' => auth()->user()->id
         ]);
 
         return redirect()->route('home')->with([

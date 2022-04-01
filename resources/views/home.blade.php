@@ -16,9 +16,10 @@
                 @foreach ($posts as $post)
                     <div class="col-md-2 mb-2">
                         <div class="card h-100">
-                            <img src="{{ asset('./uploads/'.$post->image) }}" class="card-img-top" alt="...">
+                            <img src="{{ asset('./uploads/' . $post->image) }}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $post->title }}</h5>
+                                <h6 class="card-title">{{ $post->user ? $post->user->name : null }}</h6>
                                 <p class="card-text">{{ Str::limit($post->body, 50) }}</p>
                                 <a href=" {{ route('post.show', $post->slug) }} " class="btn btn-primary">Show more</a>
                             </div>
