@@ -14,10 +14,10 @@
                 </li>
                 @if (auth()->check())
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('profile.show') }}">{{ auth()->user()->name }}</a>
+                        <a class="nav-link" href="{{ route('post.create') }}">Ajouter</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('post.create') }}">Ajouter</a>
+                        <a class="nav-link" href="{{ route('profile.show') }}">{{ auth()->user()->name }}</a>
                     </li>
                 @else
                     <li class="nav-item">
