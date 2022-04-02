@@ -10,23 +10,24 @@
             <div class="row">
                 <div class="col-md-12 mb-2">
                     <div class="card h-100">
-                        <img src="{{ asset('./uploads/'.$post->image) }}" class="card-img-top" alt="...">
+                        <img src="{{ asset('./uploads/' . $post->image) }}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <p class="card-text">{{ $post->body }}</p>
                         </div>
                     </div>
-                    <a href="{{ route('post.edit', $post->slug) }}" class="btn btn-warning">
-                        Modifier
-                    </a>
-                    <form id="{{ $post->id }}" action="{{ route('post.delete', $post->slug) }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                    </form>
-                    <button onclick="event.preventDefault();
+                    @if (auth()->user()->id === $post->user_id)
+                        <a href="{{ route('post.edit', $post->slug) }}" class="btn btn-warning">
+                            Modifier
+                        </a>
+                        <form id="{{ $post->id }}" action="{{ route('post.delete', $post->slug) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+                        <button class="btn btn-danger" type="submit" onclick="event.preventDefault();
                             if(confirm('Are you sure ?'))
-                            document.getElementById({{ $post->id }}).submit();" class="btn btn-danger"
-                        type="submit">Supprimer</button>
+                            document.getElementById({{ $post->id }}).submit();">Supprimer</button>
+                    @endif
                 </div>
             </div>
         </div>
