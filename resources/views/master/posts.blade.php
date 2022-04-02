@@ -100,23 +100,11 @@
                            border-b border-r border-[#E8E8E8]
                            "
                            >
-                           <a
-                              href="javascript:void(0)"
-                              class="
-                              border border-info
-                              py-2
-                              px-6
-                              text-info
-                              inline-block
-                              rounded
-                              hover:bg-info hover:text-white
-                              "
-                              >
-                           Modifier
-                           </a>
-                           <a
-                              href="javascript:void(0)"
-                              class="
+                           <form id="{{ $post->id }}" action="{{ route('post.delete', $post->slug) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            </form>
+                            <button class="
                               border border-danger
                               py-2
                               px-6
@@ -124,10 +112,23 @@
                               inline-block
                               rounded
                               hover:bg-danger hover:text-white
-                              "
-                              >
-                           Supprimer
-                           </a>
+                              " type="submit" onclick="event.preventDefault();
+                                if(confirm('Are you sure ?'))
+                                document.getElementById({{ $post->id }}).submit();">Supprimer</button>
+                                <a
+                                href="{{ route('post.edit', $post->slug) }}"
+                                class="
+                                border border-info
+                                py-2
+                                px-6
+                                text-info
+                                inline-block
+                                rounded
+                                hover:bg-info hover:text-white
+                                "
+                                >
+                             Modifier
+                             </a>
                         </td>
                      </tr>
                      @endforeach
