@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     @if (auth()->check())
-                        @if (auth()->user()->id === $post->user_id)
+                        @if (auth()->user()->id === $post->user_id || auth()->user()->is_admin)
                             <a href="{{ route('posts.edit', $post->slug) }}" class="btn btn-warning">
                                 Modifier
                             </a>
