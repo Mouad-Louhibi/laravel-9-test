@@ -21,7 +21,7 @@
                                 <h5 class="card-title">{{ $post->title }}</h5>
                                 <h6 class="card-title">{{ $post->user ? $post->user->name : null }}</h6>
                                 <p class="card-text">{{ Str::limit($post->body, 50) }}</p>
-                                <a href=" {{ route('post.show', $post->slug) }} " class="btn btn-primary">Show more</a>
+                                <a href=" {{ route('posts.show', $post->slug) }} " class="btn btn-primary">Show more</a>
                             </div>
                         </div>
                     </div>

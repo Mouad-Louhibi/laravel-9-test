@@ -14,7 +14,7 @@
                 </li>
                 @if (auth()->check())
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('post.create') }}">Ajouter</a>
+                        <a class="nav-link" href="{{ route('posts.create') }}">Ajouter</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('profile.show') }}">{{ auth()->user()->name }}</a>
@@ -30,7 +30,7 @@
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Recherche</button>
+                <button class="btn btn-outline-secondary" type="submit">Recherche</button>
             </form>
         </div>
     </div>

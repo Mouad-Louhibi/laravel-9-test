@@ -16,17 +16,20 @@
                             <p class="card-text">{{ $post->body }}</p>
                         </div>
                     </div>
-                    @if (auth()->user()->id === $post->user_id)
-                        <a href="{{ route('post.edit', $post->slug) }}" class="btn btn-warning">
-                            Modifier
-                        </a>
-                        <form id="{{ $post->id }}" action="{{ route('post.delete', $post->slug) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                        </form>
-                        <button class="btn btn-danger" type="submit" onclick="event.preventDefault();
+                    @if (auth()->check())
+                        @if (auth()->user()->id === $post->user_id)
+                            <a href="{{ route('posts.edit', $post->slug) }}" class="btn btn-warning">
+                                Modifier
+                            </a>
+                            <form id="{{ $post->id }}" action="{{ route('posts.destroy', $post->slug) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                            <button class="btn btn-danger" type="submit" onclick="event.preventDefault();
                             if(confirm('Are you sure ?'))
                             document.getElementById({{ $post->id }}).submit();">Supprimer</button>
+                        @endif
                     @endif
                 </div>
             </div>

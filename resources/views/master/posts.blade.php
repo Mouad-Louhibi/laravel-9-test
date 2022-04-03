@@ -100,7 +100,7 @@
                            border-b border-r border-[#E8E8E8]
                            "
                            >
-                           <form id="{{ $post->id }}" action="{{ route('post.delete', $post->slug) }}" method="POST">
+                           <form id="{{ $post->id }}" action="{{ route('posts.destroy', $post->slug) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             </form>
@@ -116,7 +116,7 @@
                                 if(confirm('Are you sure ?'))
                                 document.getElementById({{ $post->id }}).submit();">Supprimer</button>
                                 <a
-                                href="{{ route('post.edit', $post->slug) }}"
+                                href="{{ route('posts.edit', $post->slug) }}"
                                 class="
                                 border border-info
                                 py-2
