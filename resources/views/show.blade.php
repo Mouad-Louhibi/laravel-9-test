@@ -27,8 +27,8 @@
                                 @method('DELETE')
                             </form>
                             <button class="btn btn-danger" type="submit" onclick="event.preventDefault();
-                            if(confirm('Are you sure ?'))
-                            document.getElementById({{ $post->id }}).submit();">Supprimer</button>
+                                if(confirm('Are you sure ?'))
+                                document.getElementById({{ $post->id }}).submit();">Supprimer</button>
                         @endif
                     @endif
                 </div>
