@@ -60,7 +60,7 @@
                      </tr>
                   </thead>
                   <tbody>
-                    @foreach (auth()->user()->posts as $post)
+                    @foreach (auth()->user()->posts()->withTrashed()->get() as $post)
                      <tr>
                         
                         <td
