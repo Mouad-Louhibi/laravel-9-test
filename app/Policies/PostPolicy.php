@@ -36,12 +36,20 @@ class PostPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create()
     {
-        //
+        return auth()->check() ? true : false;
+    }
+
+    /**
+     * Determine whether the user can edit models.
+     *
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function edit()
+    {
         return auth()->check() ? true : false;
     }
 
