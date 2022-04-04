@@ -42,6 +42,7 @@ class PostPolicy
     public function create(User $user)
     {
         //
+        return auth()->check() ? true : false;
     }
 
     /**
