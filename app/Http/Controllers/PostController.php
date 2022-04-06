@@ -188,4 +188,19 @@ class PostController extends Controller
             'success' => 'Article deleted successfully'
         ]);
     }
+
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function restore(Post $post)
+    {
+        $post->restore();
+
+        return redirect()->route('home')->with([
+            'success' => 'Article restored successfully'
+        ]);
+    }
 }
