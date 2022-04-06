@@ -100,10 +100,18 @@
                            border-b border-r border-[#E8E8E8]
                            "
                            >
-                           <form id="{{ $post->id }}" action="{{ route('posts.destroy', $post->slug) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            </form>
+                           @if ($post->trashed())
+                              <form id="{{ $post->id }}" action="{{ route('posts.delete', $post->slug) }}" method="POST">
+                                 @csrf
+                                 @method('DELETE')
+                              </form>
+                           @else
+                              <form id="{{ $post->id }}" action="{{ route('posts.destroy', $post->slug) }}" method="POST">
+                                 @csrf
+                                 @method('DELETE')
+                              </form>
+                           @endif
+                           
                             <button class="
                               border border-danger
                               py-2
