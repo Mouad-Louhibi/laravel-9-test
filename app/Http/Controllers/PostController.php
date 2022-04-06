@@ -171,4 +171,21 @@ class PostController extends Controller
             'success' => 'Article deleted successfully'
         ]);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Post $post)
+    {
+        if (file_exists(public_path('./uploads/') . $post->image))
+            File::delete('uploads' . '/' . $post->image);
+        $post->forceDelete();
+
+        return redirect()->route('home')->with([
+            'success' => 'Article deleted successfully'
+        ]);
+    }
 }
