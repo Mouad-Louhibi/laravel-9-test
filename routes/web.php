@@ -27,3 +27,5 @@ Route::middleware([
 
 Route::resource('categories', 'CategoryController');
 Route::resource('posts', 'PostController');
+Route::get('/post/delete/{slug}', 'PostController@delete')->name('posts.delete');
+Route::get('/post/restore/{slug}', 'PostController@restore')->name('posts.restore');
