@@ -143,6 +143,7 @@
                                     Archiver
                                 @endif
                               </button>
+                              @if (!$post->trashed())
                                 <a
                                 href="{{ route('posts.edit', $post->slug) }}"
                                 class="
@@ -157,6 +158,7 @@
                                 >
                              Modifier
                              </a>
+                             @endif
                         </td>
                      </tr>
                      @endforeach
