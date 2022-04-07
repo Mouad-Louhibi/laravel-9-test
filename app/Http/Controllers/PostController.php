@@ -178,8 +178,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function delete(Post $post)
+    public function delete($slug)
     {
+        $post = Post::withTrashed()->where('slug', $slug)->first();
+
         if (file_exists(public_path('./uploads/') . $post->image))
             File::delete('uploads' . '/' . $post->image);
         $post->forceDelete();
@@ -195,8 +197,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function restore(Post $post)
+    public function restore($slug)
     {
+        $post = Post::withTrashed()->where('slug', $slug)->first();
         $post->restore();
 
         return redirect()->route('home')->with([
