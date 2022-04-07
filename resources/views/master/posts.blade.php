@@ -113,7 +113,7 @@
                                  hover:bg-info hover:text-white
                                  "
                                  >
-                                 Restore
+                                 Récupérer
                               </a>
                               <form id="{{ $post->id }}" action="{{ route('posts.delete', $post->slug) }}" method="POST">
                                  @csrf
@@ -136,7 +136,13 @@
                               hover:bg-danger hover:text-white
                               " type="submit" onclick="event.preventDefault();
                                 if(confirm('Are you sure ?'))
-                                document.getElementById({{ $post->id }}).submit();">Supprimer</button>
+                                document.getElementById({{ $post->id }}).submit();">
+                                @if ($post->trashed())
+                                    Supprimer
+                                @else
+                                    Archiver
+                                @endif
+                              </button>
                                 <a
                                 href="{{ route('posts.edit', $post->slug) }}"
                                 class="
