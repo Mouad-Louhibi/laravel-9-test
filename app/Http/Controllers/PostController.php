@@ -163,8 +163,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if (file_exists(public_path('./uploads/') . $post->image))
-            File::delete('uploads' . '/' . $post->image);
+        // if (file_exists(public_path('./uploads/') . $post->image))
+        //     File::delete('uploads' . '/' . $post->image);
         $post->delete();
 
         return redirect()->route('home')->with([
