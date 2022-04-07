@@ -101,6 +101,20 @@
                            "
                            >
                            @if ($post->trashed())
+                              <a
+                                 href="{{ route('posts.restore', $post->slug) }}"
+                                 class="
+                                 border border-info
+                                 py-2
+                                 px-6
+                                 text-info
+                                 inline-block
+                                 rounded
+                                 hover:bg-info hover:text-white
+                                 "
+                                 >
+                                 Restore
+                              </a>
                               <form id="{{ $post->id }}" action="{{ route('posts.delete', $post->slug) }}" method="POST">
                                  @csrf
                                  @method('DELETE')
